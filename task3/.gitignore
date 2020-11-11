@@ -4,7 +4,7 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
-route53.tf
+
 # Crash log files
 crash.log
 
