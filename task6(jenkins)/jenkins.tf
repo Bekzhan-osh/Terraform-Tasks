@@ -9,10 +9,6 @@ resource "aws_instance" "centos" {
   }]
 
   tags = {
-    Name = "r1soft"
+    Name = "Jenkins"
   }
-}
-
-output "PIP" {
-  value = "${aws_instance.centos.public_ip}"
 }

@@ -26,8 +26,6 @@ resource "null_resource" "remote" {
     inline = [
       "sudo chmod +x /tmp/userdata.sh",
       "sudo /tmp/userdata.sh",
-      "sudo serverbackup-setup --user admin --pass r1soft",
-      "sudo /etc/init.d/cdp-server restart",
     ]
   }
 }
