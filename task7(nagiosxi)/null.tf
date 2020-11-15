@@ -3,17 +3,17 @@ resource "null_resource" "remote" {
     always_run = "${timestamp()}"
   }
 
-  provisioner "file" {
-    connection {
-      type        = "ssh"
-      user        = "centos"
-      private_key = "${file("~/.ssh/id_rsa")}"
-      host        = "${aws_instance.centos.public_ip}"
-    }
+  # provisioner "file" {
+  #   connection {
+  #     type        = "ssh"
+  #     user        = "centos"
+  #     private_key = "${file("~/.ssh/id_rsa")}"
+  #     host        = "${aws_instance.centos.public_ip}"
+  #   }
 
-    source      = "userdata.sh"
-    destination = "/tmp/userdata.sh"
-  }
+  #   source      = "userdata.sh"
+  #   destination = "/tmp/userdata.sh"
+  # }
 
   provisioner "remote-exec" {
     connection {
@@ -24,8 +24,7 @@ resource "null_resource" "remote" {
     }
 
     inline = [
-      "sudo chmod +x /tmp/userdata.sh",
-      "sudo /tmp/userdata.sh",
+      "sudo curl https://assets.nagios.com/downloads/nagiosxi/install.sh | sudo sh"
     ]
   }
 }
